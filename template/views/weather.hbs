@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>weather app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{>headerlink}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!---main section -->
+
+
+    <div class="container-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form action=""  class="temp_form">
+                        <input type="text" id ="cityname" placeholder="enter your city name" autocomplete="off">
+                        <input type="submit" value="search" id="submitbtn">
+
+                    </form>
+                </div>
+                <div class="tempinformation">
+                    <div class="top_layer">
+                        <p id="day">tuesday</p>
+                        <p id="today_date">9th march</p>
+                    </div>
+                    <div class="main_layer">
+                        <p id="city_name">here your output</p>
+                        <div class="middle_layer data_hide">
+                            <p id="temp"><span>0</span><sup>o</sup>C</p>
+                            <p id="temp_status"><i class="fa fa-cloud" aria-hidden="true"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!---footer code -->
+    {{>footer}}
+    <script src="js/main.js"></script>
+    <script>
+        const day = document.getElementById("day");
+        const today_date = document.getElementById("today_date");
+        const getcurrentday = () => {
+        var weekday = new Array(7);
+        weekday[0] = "sunday";
+        weekday[1] = "monday";
+        weekday[2] = "tuesday";
+        weekday[3] = "wednesday";
+        weekday[4] = "thursday";
+        weekday[5] = "friday";
+        weekday[6] = "saturday";
+        let currenttime = new Date();
+        let day1 = weekday[currenttime.getDay()];
+        day.innerText = day1;
+        };
+        getcurrentday();
+        const getcurrenttime = () => {
+            var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec",];
+            var now = new Date();
+            var month = months[now.getMonth()];
+            var date = now.getDate();
+            let hours = now.getHours();
+            let min = now.getMinutes();
+    
+            let periods = "AM";
+            if (hours > 11) {
+                periods = "PM"
+                if (hours > 12) hours -= 12;
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+    
+            let time = `${month}|${date}|${hours}:${min}${periods}`;
+            today_date.innerText =time;
+            
+            
+        };
+        getcurrenttime();
+    </script>
+</body>
+
+</html>
